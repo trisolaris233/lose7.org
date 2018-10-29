@@ -5,24 +5,16 @@
         <?php $this->author->gravatar('200') ?>
     </section>
 
-    <section class="name_widget">
-        <h2>
-        <?php $this->author(); ?>
-        </h2>
-        (·_·)← 是肮脏的大人脸啊!
-    </section>
 
-    <br><br>
-
-    <?php if (!empty($this->options->sidebarBlock) && in_array('ShowRecentPosts', $this->options->sidebarBlock)): ?>
-    <section class="widget">
-		<h3 class="widget-title"><?php _e('最新文章'); ?></h3>
-        <ul class="widget-list">
-            <?php $this->widget('Widget_Contents_Post_Recent')
-            ->parse('<li><a href="{permalink}">{title}</a></li>'); ?>
-        </ul>
-    </section>
+    <?php Typecho_Widget::widget('Widget_Metas_Tag_Cloud')->to($tags); ?>
+    <?php if($tags->have()): ?>
+    <h3 class="widget-title"><?php _e('标签'); ?></h3>
+        <?php while ($tags->next()): ?>
+        <?php $scale=(int)$tags->count; $lead = (int)($scale/10 + 1) > 3 ? 3 : (int)($scale/10 +1); ?>
+        <a style="font-size: <?php echo $lead,$scale % 10; ?>0%" href="<?php $tags->permalink();?>"><?php $tags->name(); ?></a>
+        <?php endwhile; ?>
     <?php endif; ?>
+
 
 
     <?php if (!empty($this->options->sidebarBlock) && in_array('ShowCategory', $this->options->sidebarBlock)): ?>
