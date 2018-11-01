@@ -29,6 +29,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 				if(isset($this->fields->summary)) {
 					$this->excerpt($this->fields->summary, '...');
 				}
+
 			?>
             </div>
 <p class="readmore">
