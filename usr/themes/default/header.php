@@ -40,6 +40,7 @@
                     width: '0px'
                 })
             });
+
         });
 
     </script>
@@ -70,7 +71,7 @@
 
             <div class="col-mb-12 col-12 nav-tools">
                 <nav id="nav-menu" class="clearfix" role="navigation">
-                    <a<?php if($this->is('index')): ?> class="current"<?php endif; ?> href="<?php $this->options->siteUrl(); ?>" id="nav-item"><?php _e('首页'); ?></a>
+                    <a<?php if($this->is('index')): ?> class="current"<?php endif; ?> href="<?php $this->options->siteUrl(); ?>" id="nav-item"><?php _e('Archives'); ?></a>
                     <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
                     <?php while($pages->next()): ?>
                     <a<?php if($this->is('page', $pages->slug)): ?> class="current"<?php endif; ?> href="<?php $pages->permalink(); ?>" title="<?php $pages->title(); ?>" id="nav-item"><?php $pages->title(); ?></a>

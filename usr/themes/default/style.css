@@ -297,11 +297,15 @@ textarea {
 .post {
     padding: 15px 0 20px;
     border-bottom: 1px solid #EEE;
+    -webkit-transition: box-shadow .3s;
+    -moz-transition: box-shadow .3s;
+    -o-transition: box-shadow .3s;
+    transition: box-shadow .3s;
 }
 
 .post-title {
     margin: .83em 0;
-    font-size: 1.4em;
+    text-align: center;
 }
 
 .post-meta {
@@ -309,6 +313,7 @@ textarea {
     padding: 0;
     color: #999;
     font-size: .92857em;
+    text-align: center;
 }
 
 .post-meta li {
@@ -641,7 +646,18 @@ section.avatar_widget img {
     bottom: -110px
 }
 
-blockquote { margin: 0.8em 0px; }
-blockquote { border-left: 4px solid rgb(223, 226, 229); padding: 0px 15px; color: rgb(119, 119, 119); }
-blockquote blockquote { padding-right: 0px; }
-.on-focus-mode blockquote { border-left-color: rgba(85, 85, 85, 0.12); }
+blockquote { 
+    margin: 0.8em 0px; 
+}
+blockquote {
+    border-left: 4px solid rgba(168, 0, 48, 0.6);
+    padding: 0px 15px; 
+    color: rgb(119, 119, 119);
+}
+
+blockquote blockquote { 
+    padding-right: 0px; 
+}
+.readmore {
+    text-align: center;
+}
