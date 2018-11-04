@@ -13,11 +13,24 @@
             <li><?php _e('时间: '); ?><time datetime="<?php $this->date('c'); ?>" itemprop="datePublished"><?php $this->date(); ?></time></li>
             <li><?php _e('分类: '); ?><?php $this->category(','); ?></li>
         </ul>
+        <hr>
         <div class="post-content" itemprop="articleBody">
+            <?php
+                if(isset($this->fields->modified_alert)) {
+                    date_default_timezone_set('Asia/Shanghai');
+            ?>
+                <div class="modified-alert">
+                    <p>本文最后更新于<strong><?php echo date("Y年n月j日 G:i", $this->modified); ?></strong>，若有勘误，请即时留言指正，<strong>頼む！</strong></p>
+                </div>
+                    
+            <?php
+               }
+                
+            ?>
             <?php $this->content(); ?>
         </div>
-        </br></br>
-        <blockquote>
+        <hr>
+        <blockquote class="weak">
             <?php _e('本文由') ?><a href="<?php $this->options->siteUrl(); ?>"><u><?php $this->author(); ?></u></a><?php _e('创作， 采用') ?>
             <u><a target="_blank" href="https://creativecommons.org/licenses/by/4.0/"><?php _e('知识共享署名4.0')?></a></u><?php _e('国际许可协议许可') ?>
             </br></br>
