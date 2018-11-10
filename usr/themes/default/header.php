@@ -16,8 +16,10 @@
     <!-- 使用url函数转换相关路径 -->
     <link rel="stylesheet" href="<?php $this->options->themeUrl('grid.css'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('style.css'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('animate.min.css'); ?>">
     <link rel="icon" href="<?php $this->options->themeUrl('img/favicon.png'); ?>">
     <script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="<?php $this->options->themeUrl('wow.min.js'); ?>"></script>
 
     <!--[if lt IE 9]>
     <script src="//cdnjscn.b0.upaiyun.com/libs/html5shiv/r29/html5.min.js"></script>
@@ -27,22 +29,35 @@
     <!-- 通过自有函数输出HTML头部信息 -->
     <?php $this->header(); ?>
     <script>
+        new WOW().init();
         $(document).ready(function () {
-            $("#logo").hover(function () {
-                var content = $("#logo").text();
-                var target_width = $("#logo").width();
-                $("#logo-underline").animate({
-                    width: content.length * 37
-                })
-            }, 
-            function () {
-                $("#logo-underline").animate({
-                    width: '0px'
-                })
-            });
-
+            $("#logo").addClass('animated bounceInDown delay-5s');
+            $(".description").addClass('animated slideInLeft delay-5s');
+            // $("#logo").hover(
+            //     function() {
+            //         $("#logo").addClass('animated')
+            //     }
+            // )
+            $("#logo").hover(function(){
+                $("#logo").addClass('animated tada');
+            })
+            // $("#logo").hover(function () {
+            //     var content = $("#logo").text();
+            //     var target_width = $("#logo").width();
+            //     $("#logo-underline").animate({
+            //         width: content.length * 37
+            //     })
+            // }, 
+            // function () {
+            //     $("#logo-underline").animate({
+            //         width: '0px'
+            //     })
+            // });
+            $(".toggle-box").hide(); 
+	        $(".toggle").click(function(){
+		        $(this).next(".toggle-box").slideToggle();
+	        });
         });
-
     </script>
 </head>
 <body>
@@ -71,7 +86,7 @@
 
             <div class="col-mb-12 col-12 nav-tools">
                 <nav id="nav-menu" class="clearfix" role="navigation">
-                    <a<?php if($this->is('index')): ?> class="current"<?php endif; ?> href="<?php $this->options->siteUrl(); ?>" id="nav-item"><?php _e('Archives'); ?></a>
+                    <a<?php if($this->is('index')): ?> class="current"<?php endif; ?> href="<?php $this->options->siteUrl(); ?>" id="nav-item"><?php _e('HOME'); ?></a>
                     <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
                     <?php while($pages->next()): ?>
                     <a<?php if($this->is('page', $pages->slug)): ?> class="current"<?php endif; ?> href="<?php $pages->permalink(); ?>" title="<?php $pages->title(); ?>" id="nav-item"><?php $pages->title(); ?></a>
