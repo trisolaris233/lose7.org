@@ -661,10 +661,9 @@ blockquote.weak a:hover {
 .readmore {
   text-align: center;
 }
-
 .modified-alert {
   padding: 5px;
-  margin: 10px 0 !important;
+  margin: 10px 0;
   color: #A80030;
   font-size: 14px;
   text-indent: 22px;
@@ -707,65 +706,75 @@ blockquote.weak a:hover {
   margin-top: 35px;
 }
 #maki {
-  position: fixed;
-  right: -15px;
-  bottom: -15px;
-  max-height: 110px;
-  transition: all 0.3s;
+    position: fixed;
+    right: -15px;
+    bottom: -15px;
+    max-height: 110px;
+    transition: all .3s
 }
+
 #maki:hover {
-  right: 0;
-  bottom: 0;
+    right: 0;
+    bottom: 0
 }
+
 #maki.hidemaki {
-  right: -110px;
-  bottom: -110px;
+    right: -110px;
+    bottom: -110px
 }
 .description {
-  text-shadow: 0 0 3px black;
-}
+    text-shadow: 0 0 3px black;
+  }
 .widget .friends {
   margin-top: 15px;
 }
-.hljs {
+.hljs{
   font-family: Menlo, Monaco, Consolas, "Lucida Console", "Courier New", monospace !important;
 }
 pre::-webkit-scrollbar-track-piece {
-  background: #eee;
+  background: #eee
 }
+
 pre::-webkit-scrollbar {
   width: 8px;
-  height: 6px;
+  height: 6px
 }
+
 pre::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background-color: #cbcbcb;
+  background-color: #cbcbcb
 }
+
 pre::-webkit-scrollbar-thumb:hover {
-  background-color: #bbb;
+  background-color: #bbb
 }
+
 code::-webkit-scrollbar-track-piece {
-  background: #eee;
+  background: #eee
 }
+
 code::-webkit-scrollbar {
   width: 8px;
-  height: 6px;
+  height: 6px
 }
+
 code::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background-color: #cbcbcb;
+  background-color: #cbcbcb
 }
+
 code::-webkit-scrollbar-thumb:hover {
-  background-color: #bbb;
+  background-color: #bbb
 }
+
 div.filebox {
   padding: 5px;
   margin: 10px 0;
   font-size: 14px;
   text-indent: 22px;
   background: #f7f7f7;
-  border-left: solid 5px #00a82d;
-  border-right: solid 5px #00a82d;
+  border-left: solid 5px rgb(0, 168, 45);
+  border-right: solid 5px rgb(0, 168, 45);
   text-align: center;
   font-weight: bold;
 }
@@ -774,11 +783,13 @@ div.filebox {
   color: #998;
   font-style: italic;
 }
+
 .hljs-keyword,
 .hljs-selector-tag,
 .hljs-subst {
   color: #d14;
 }
+
 .hljs-number,
 .hljs-literal,
 .hljs-variable,
@@ -786,74 +797,70 @@ div.filebox {
 .hljs-tag .hljs-attr {
   color: #008080;
 }
+
 .hljs-string,
 .hljs-doctag {
   color: blue;
 }
+
 .hljs-title,
 .hljs-section,
 .hljs-selector-id {
   color: #900;
   font-weight: bold;
 }
+
 .hljs-subst {
   font-weight: normal;
 }
+
 .hljs-type,
 .hljs-class .hljs-title {
   color: #458;
   font-weight: bold;
 }
+
 .hljs-tag,
 .hljs-name,
 .hljs-attribute {
+  // color: #000080;
   color: #d14;
   font-weight: bold;
 }
+
 .hljs-regexp,
 .hljs-link {
   color: #009926;
 }
+
 .hljs-symbol,
 .hljs-bullet {
   color: #990073;
 }
+
 .hljs-built_in,
 .hljs-builtin-name {
   color: #0086b3;
 }
+
 .hljs-meta {
   color: #999;
   font-weight: bold;
 }
+
 .hljs-deletion {
   background: #fdd;
 }
+
 .hljs-addition {
   background: #dfd;
 }
+
 .hljs-emphasis {
   font-style: italic;
 }
+
 .hljs-strong {
   font-weight: bold;
 }
-.post-single p a {
-  font-weight: bold;
-}
-span.mask {
-  color: #a3002e;
-  background-color: #a3002e;
-}
-.post-single p {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-.modified-alert p {
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-.post-single img {
-  margin-top: 10px;
-  margin-bottom: 10px; 
-}
+

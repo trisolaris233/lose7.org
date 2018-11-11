@@ -841,6 +841,9 @@ div.filebox {
 .post-single p a {
   font-weight: bold;
 }
+.post-single li a {
+  font-weight: bold;
+}
 span.mask {
   color: #a3002e;
   background-color: #a3002e;
