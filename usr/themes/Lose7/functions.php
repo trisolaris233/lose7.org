@@ -15,7 +15,26 @@ function themeConfig($form) {
     
     $form->addInput($sidebarBlock->multiMode());
 }
+function getRecentUpdate($num) {
+    if($num) {
+        // 取出所有的文章
+        $db = Typecho_Db::get();
+        $select = $db->select()->from('contents')->where('type = ?', 'post')->order('modified', Typecho_Db::SORT_DESC);
+        $result = $db->fetchAll($select);
+        $i = 0;
 
+        // 以降序输出文章标题
+        foreach ($result as $row) {
+            if($i >= $num && $num > 0)
+                break;
+            $row = Typecho_Widget::widget('Widget_Abstract_Contents')->push($row);
+            $post_title = htmlspecialchars($row['title']);
+            $permalink = $row['permalink'];
+            $modified_date = $row['modified'];
+            echo '<li><time style="margin-right: 10px; color: grey; font-size: 12px;">'.date('Y-m-d', $modified_date).'</time><a href="'.$permalink.'" title="'.$post_title.'" target="_blank">'.$post_title.'</a></li>';
+        }
+    }
+}
 
 /*
 function themeFields($layout) {
