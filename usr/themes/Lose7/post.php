@@ -6,6 +6,69 @@
         height: 150px;
     }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    function appendHeadingId(selectors) {
+        $(selectors).each(function(){
+            $(this).attr("id", $(this).text());
+        });
+    }
+    $(document).ready(function () {
+        // 为h2, h3, h4添加id
+        appendHeadingId('h2,h3,h4');
+        
+        // 删除原先的sidebar， 重新添加sidebar与widget
+        $(".sidebar").remove();
+        $("#main").after('<div class="col-mb-12 col-4 kit-hidden-tb sidebar wow fadeInUp" id="secondary" role="complementary"></div>');
+        $(".sidebar").prepend('<section class="widget update-recent wow fadeInUp"><div class="title"><h3 class="widget-title"><?php _e('最近更新'); ?></h3></div>');
+        $(".update-recent").append('<ul class="widget-list"><?php getRecentUpdate(10, '<li class="wow fadeInUp"><time style="margin-right: 10px; color: grey; font-size: 12px;">%date%</time><a href="%link%" title="%title%" target="_blank">%title%</a></li>');?></ul>');
+        $(".sidebar").append('<section class="widget toc wow bounceIn"><div class="title"><h3 class="widget-title">文章目录</h3></div></section>');
+        $(".toc").append('<div class="toc-div"></div>')
+        
+        
+        // 实现sticky效果
+        var toc_top = $(".toc").offset().top;
+        var update_height = $(".update-recent").height();
+        var sidebar_width = $(".sidebar").width();
+        var rate_y = $(".sidebar").offset().left / $(document).width() * 100;
+        var insert_toc = false;
+        $(window).on('resize', function () { 
+            rate_y = $(".sidebar").offset().left / $(document).width() * 100;
+            var sidebar_width = $(".sidebar").width();
+        });
+        $(document).scroll(function () {
+            var st = document.body.scrollTop || document.documentElement.scrollTop;
+            if(st >= toc_top - 35) {
+                // 将sidebar位置固定
+                $(".sidebar").css({
+                    "position": "fixed",
+                    "top": (-(update_height + 50)).toString() + "px",
+                    "left": rate_y.toString() + "%",
+                    "max-width": sidebar_width,
+                });
+                // 如果还没有插入文章目录
+                if(!insert_toc) {
+                    // 插入文章目录
+                    tocbot.init({
+                        tocSelector: '.toc-div',
+                        contentSelector: '.post-single',
+                        headingSelector: 'h2, h3, h4',
+                        extraListClasses: 'wow fadeInUp animated'
+                    });
+                    insert_toc = true;
+                }
+            } else {
+                // 将sidebar位置还原
+                $(".sidebar").css({
+                    "position": "",
+                    "top": "",
+                    "left":"",
+                    "max-width":""
+                });
+            }
+        });
+    });
+</script>
 <div class="col-mb-12 col-8" id="main" role="main">
     <article class="post-single" itemscope itemtype="http://schema.org/BlogPosting">
         <h1 class="post-title" itemprop="name headline"><a itemprop="url" href="<?php $this->permalink() ?>"><?php $this->title() ?></a></h1>
@@ -30,8 +93,18 @@
                 
             ?>
             <?php $this->content(); ?>
+	   
         </div>
         <p itemprop="keywords" class="tags"><?php _e('标签: '); ?><?php $this->tags(', ', true, 'none'); ?></p>
+        <?php if(isset($this->fields->copyright)): ?>
+               <hr>
+               <blockquote class="weak">
+                <p>版权声明: 本文为原创文章, 版权归<a href="https://lose7.org">阳光加冰</a>所有。</p>
+                <br>
+                <p>本文使用<a href="https://creativecommons.org/licenses/by-nc/4.0/deed.zh">知识共享署名-非商业性使用 4.0 国际许可协议</a>许可。</p>
+                <p>您可以自由的转载和修改， 但请务必注明文章来源且不可用于商业目的。</p>
+               </blockquote>
+            <?php endif ?>
     </article>
 
     <?php $this->need('comments.php'); ?>
