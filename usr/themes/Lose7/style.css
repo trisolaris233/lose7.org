@@ -860,3 +860,6 @@ span.mask {
   margin-top: 10px;
   margin-bottom: 10px; 
 }
+.weak .red {
+  color: rgb(203, 102, 130);
+}
